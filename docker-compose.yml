@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: nombre_de_tu_contenedor_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: nombre_de_tu_contenedor_phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: nombre_de_tu_contenedor_mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
